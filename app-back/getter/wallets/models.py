@@ -52,10 +52,11 @@ class TransactionBNB(models.Model):
 class SendedAddress(models.Model):
     address = models.CharField(max_length=255, unique=True)
     sended = models.BooleanField(default=False)
+    balance = models.PositiveBigIntegerField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.address
 
     class Meta:
-        ordering = ('-date',)
+        ordering = ('balance',)

@@ -48,16 +48,19 @@ class SendedAddressRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAP
 
 
 def get_address(request):
-    with open('visafy.csv', newline='') as csvfile:
+    with open('csv/owl_holders.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',')
         for row in spamreader:
-            address = row[5]
-            try:
-                new_address = models.SendedAddress.objects.create(address=address)
-                new_address.save()
+            if row[1] != "Balance":
+                address = row[0]
+                balance = int(float(row[1]))
+                if float(balance) * 0.02 > 30:
+                    try:
+                        new_address = models.SendedAddress.objects.create(address=address, balance=balance)
+                        new_address.save()
 
-            except:
-                continue
+                    except:
+                        continue
 
 
 class ClearAddressAPIView(APIView):
