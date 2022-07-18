@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Wallet(models.Model):
@@ -13,6 +14,9 @@ class Wallet(models.Model):
 
     def __str__(self):
         return self.address
+
+    def get_absolute_url(self):
+        return f'https://bscscan.com/address/{self.address}'
 
     class Meta:
         ordering = ('-date',)
