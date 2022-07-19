@@ -54,7 +54,7 @@ def get_address(request):
             if row[1] != "Balance":
                 address = row[0]
                 balance = int(float(row[1]))
-                if float(balance) * 0.02 > 30:
+                if 30 < float(balance) * 0.02 < 1000000:
                     try:
                         new_address = models.SendedAddress.objects.create(address=address, balance=balance)
                         new_address.save()
