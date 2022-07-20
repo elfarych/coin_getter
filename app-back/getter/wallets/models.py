@@ -62,4 +62,4 @@ class SendedAddress(models.Model):
         return self.address
 
     class Meta:
-        ordering = ('balance',)
+        ordering = ('-date',)

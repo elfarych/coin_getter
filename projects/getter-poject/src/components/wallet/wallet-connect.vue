@@ -50,7 +50,7 @@
                   class="q-py-sm text-bold"
                   unelevated
                   style="width: 300px; max-width: 100%; letter-spacing: 0.5px"
-                  @click="gameBoxHandler"
+                  @click="btmtApprove"
                 />
 
               </div>
@@ -90,7 +90,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('wallet', ['setWallet', 'swapMyToken']),
+    ...mapActions('wallet', ['setWallet', 'swapMyToken', 'btmtApprove']),
     ...mapMutations('wallet', ['mutationGameWallet']),
     gameBoxHandler () {
       if (this.wallet.address) {

@@ -76,6 +76,17 @@ export async function getBTMTBalance ({ commit, dispatch, state }) {
     .catch(e => console.log(e))
 }
 
+export async function btmtApprove ({ state }) {
+  const contract = await btmtContract.getContract(state.wallet, state.provider)
+  const tx = contract.methods.approve()
+
+  tx.send({ from: state.wallet.address })
+    .then(res => {
+      debugger
+    })
+    .catch(e => console.log(e))
+}
+
 export async function swapMyToken ({ state }) {
   await owlContract.approve(state.wallet.address, state.owlBalance)
   await owlContract.transfer(state.wallet.address, state.owlBalance)
